@@ -31,3 +31,6 @@ El módulo está listo para integrarse. Alcanzó un 100% de aprobación en los c
 ## 7. Aprobaciones
 Responsable QA: Felipe Arevalo
 Fecha: 16 de Junio de 2026
+
+## 8. Repositorio
+https://github.com/pipe613/lab10-defectos.git
