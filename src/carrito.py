@@ -29,21 +29,19 @@ def calcular_total(carrito: list) -> float:
     
     return sum(p['precio'] * p['cantidad'] for p in carrito)
 
-def aplicar_descuento(total: float, porcentaje: float) -> float:
+def aplicar_descuento (total: float, porcentaje: float) -> float:
     """Aplica un porcentaje de descuento sobre el total.
-    
     Args:
         total: valor total del carrito (debe ser >= 0).
         porcentaje: valor entre 0 y 100 que representa el % de descuento.
-        
     Returns:
         Total con descuento aplicado.
-        
     Raises:
         ValueError: si el porcentaje está fuera del rango [0, 100].
     """
-    # DEFECTO INTENCIONAL: falta validar que el resultado no sea negativo
-    # cuando el descuento supera el 100% del total acumulado con rebajas previas.
     if porcentaje < 0 or porcentaje > 100:
         raise ValueError('El porcentaje debe estar entre 0 y 100.')
-    return total - (total * porcentaje / 100)
+    
+    # Se calcula el resultado y se asegura que el retorno nunca sea menor a 0.0
+    resultado = total - (total * porcentaje / 100)
+    return max(0.0, resultado)

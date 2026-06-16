@@ -28,3 +28,16 @@ Salida por consola al ejecutar el escenario:
 ```text
 -796.0
 VALOR NEGATIVO
+
+
+
+
+## Análisis de Causa Raíz (RCA)
+1. **¿Qué condición no está siendo validada en aplicar_descuento()?**
+No se está validando si el cálculo matemático final del total con descuento produce un valor negativo antes de ejecutar la sentencia `return`.
+
+2. **¿Por qué el porcentaje > 100 ya está validado pero no es suficiente para el escenario del defecto?**
+Porque la validación actual solo asegura que un cupón individual no exceda el 100% del valor, pero no contempla el escenario donde la combinación de rebajas previas y cupones apilables genere un saldo negativo o un error de cálculo en la lógica de negocio.
+
+3. **¿Qué cambio mínimo en la función resolvería el defecto sin alterar el comportamiento de los tests existentes?**
+Calcular primero el valor del descuento y luego utilizar la función `max(0.0, resultado)` en el retorno, asegurando así que el valor más bajo posible que la función pueda devolver sea siempre `0.0`.
